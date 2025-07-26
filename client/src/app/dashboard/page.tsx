@@ -12,8 +12,7 @@ import {
   RefreshCw,
   Clock,
   User,
-  ChevronLeft,
-  ChevronRight,
+  X,
   DollarSign,
   Activity,
   Menu
@@ -173,7 +172,7 @@ const Dashboard = () => {
               onClick={() => setSidebarOpen(false)}
               className="lg:hidden p-1 rounded hover:bg-gray-100"
             >
-              <ChevronLeft className="h-5 w-5 text-gray-600" />
+              <X className="h-5 w-5 text-gray-600" />
             </button>
           </div>
         </div>

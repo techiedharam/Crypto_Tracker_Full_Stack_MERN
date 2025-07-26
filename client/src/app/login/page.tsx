@@ -14,7 +14,7 @@ function Login() {
 
   const router = useRouter();
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     console.log(name, value);
     const copyLoginInfo = { ...loginInfo };
@@ -22,7 +22,7 @@ function Login() {
     setLoginInfo(copyLoginInfo);
   }
 
-  const handleLogin = async (e: any) => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { email, password } = loginInfo;
     if (!email || !password) {

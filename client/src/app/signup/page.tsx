@@ -15,7 +15,7 @@ function Signup() {
 
   const router = useRouter();
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     console.log(name, value);
     const copySignupInfo = { ...signupInfo };
@@ -23,7 +23,7 @@ function Signup() {
     setSignupInfo(copySignupInfo);
   }
 
-  const handleSignup = async (e: any) => {
+  const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { name, email, password } = signupInfo;
     if (!name || !email || !password) {
@@ -53,7 +53,7 @@ function Signup() {
       }
       console.log(result);
     } catch (err) {
-      handleError(err);
+      handleError(err instanceof Error ? err.message : 'An error occurred');
     }
   }
 
