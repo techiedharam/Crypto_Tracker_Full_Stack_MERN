@@ -11,7 +11,7 @@ require('./config/db');
 const PORT = process.env.PORT || 8080;
 
 app.get('/server', (req, res) => {
-  res.send('Halo, this is backend server');
+  res.send('Hello, this is backend server');
 });
 
 app.use(bodyParser.json());

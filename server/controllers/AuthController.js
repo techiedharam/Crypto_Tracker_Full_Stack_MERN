@@ -5,25 +5,40 @@ const UserModel = require("../models/User");
 
 const signup = async (req, res) => {
   try {
+    console.log('Signup request body:', req.body);
     const { name, email, password } = req.body;
+    
+    console.log('Checking if user exists with email:', email);
     const user = await UserModel.findOne({ email });
+    
     if (user) {
+      console.log('User already exists');
       return res.status(409)
         .json({ message: 'User is already exist, you can login', success: false });
     }
+    
+    console.log('Creating new user...');
     const userModel = new UserModel({ name, email, password });
+    
+    console.log('Hashing password...');
     userModel.password = await bcrypt.hash(password, 10);
+    
+    console.log('Saving user to database...');
     await userModel.save();
+    
+    console.log('User created successfully');
     res.status(201)
       .json({
         message: "Signup successfully",
         success: true
       })
   } catch (err) {
+    console.error('Signup error:', err);
     res.status(500)
       .json({
-        message: "Internal server errror",
-        success: false
+        message: "Internal server error",
+        success: false,
+        error: err.message
       })
   }
 }
