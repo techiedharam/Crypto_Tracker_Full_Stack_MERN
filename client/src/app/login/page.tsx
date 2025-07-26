@@ -54,7 +54,7 @@ function Login() {
       }
       console.log(result);
     } catch (err) {
-      handleError(err);
+      handleError(err instanceof Error ? err.message : 'An error occurred');
     }
   }
 
