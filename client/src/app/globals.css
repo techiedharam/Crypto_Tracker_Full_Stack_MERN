@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+/* Fix toast container white space issues */
+.Toastify__toast-container {
+  position: fixed !important;
+  top: 16px !important;
+  right: 16px !important;
+  z-index: 9999999 !important;
+  width: auto !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.Toastify__toast-container--top-right {
+  top: 16px !important;
+  right: 16px !important;
+}
+
+/* Ensure no extra spacing from toast container */
+.toast-container {
+  position: fixed !important;
+  top: 16px !important;
+  right: 16px !important;
+  z-index: 9999999 !important;
+  width: auto !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Prevent any body overflow or spacing issues */
+body {
+  overflow-x: hidden;
+}
+
+/* Ensure the toast container doesn't affect page layout */
+.Toastify__toast-container,
+.toast-container {
+  pointer-events: none;
+}
+
+.Toastify__toast,
+.toast {
+  pointer-events: auto;
+}
