@@ -3,10 +3,10 @@ const ensureAuthenticated = require('../middleware/Auth');
 const router = require('express').Router();
 
 // Route to get current coin data
-router.get('/current', getCurrentCoinData);
+router.get('/current', ensureAuthenticated, getCurrentCoinData);
 
 // Route to store coin history data
-router.post('/history', storeCoinHistoryData);
+router.post('/history', ensureAuthenticated, storeCoinHistoryData);
 
 
 module.exports = router;
