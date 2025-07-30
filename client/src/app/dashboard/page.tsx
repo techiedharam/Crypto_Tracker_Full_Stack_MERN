@@ -101,7 +101,29 @@ const Dashboard = () => {
     // Auto-refresh every 30 minutes (1800000 ms)
     const interval = setInterval(fetchCoinData, 30 * 60 * 1000)
 
-    return () => clearInterval(interval)
+    // Store coin history every 1 second
+    const historyInterval = setInterval(async () => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        try {
+          await fetch('https://crypto-tracker-full-stack-mern.onrender.com/coins/history/store', {
+            method: 'POST',
+            headers: {
+              'Authorization': token,
+              'Content-Type': 'application/json'
+            }
+          });
+        } catch (err) {
+          // Optionally handle error
+          console.error('Error storing coin history:', err);
+        }
+      }
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+      clearInterval(historyInterval);
+    }
   }, [router, fetchCoinData])
 
   const handleLogout = () => {
